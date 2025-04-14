@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Algorithm Visualiser</title>
+        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap">
+    </head>
+    <body>
+        <header>
+            <h1>🧠 Algorithm Visualiser</h1>
+            <nav>
+                <select id="mode">
+                    <option value="sorting">Sorting</option>
+                    <option value="pathfinding">Pathfinding</option>
+                </select>
+                <select id="algorithm"></select>
+                <button id="startBtn">Start</button>
+                <button id="resetBtn">Reset</button>
+                <label>
+                    Speed: <input type="range" id="speedSlider" min="1" max="100" value="50">
+                    <span id="speedValue">50%</span>
+                </label>
+                <button id="themeToggle">🌙</button>
+            </nav>
+            <div id="currentAlgo"></div>
+        </header>
+
+        <main>
+            <section id="visualiser"></section>
+        </main>
+
+         <!-- footer -->
+         <footer>
+            <div class="container">
+                <p>&copy; 2025 Niah Price. All rights reserved.</p>
+            </div>
+        </footer>
+        
+        <script type="module" src="script.js"></script>
+    </body>
+</html>
