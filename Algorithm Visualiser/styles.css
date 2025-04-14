@@ -1,0 +1,124 @@
+:root {
+    --bg: #f0f0f0;
+    --text: #222;
+    --accent: #4f46e5;
+
+    --bar: #4caf50; /* default */
+    --bar-bubble: #4caf50;
+    --bar-quick: #f97316;
+    --bar-merge: #3b82f6;
+    --bar-insertion: #8b5cf6;
+
+    --visited: #facc15;
+    --active: #e11d48;
+    --sorted: #ee82ee;
+}
+
+body.dark {
+    --bg: #1e1e2f;
+    --text: #fff;
+    --accent: #818cf8;
+
+    --bar-bubble: #22c55e;
+    --bar-quick: #fb923c;
+    --bar-merge: #60a5fa;
+    --bar-insertion: #a78bfa;
+
+    --visited: #fbbf24;
+    --active: #f43f5e;
+    --sorted: #34d399;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    transition: all 0.3s ease;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    padding: 1rem;
+    background: var(--accent);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+}
+
+nav select, nav button, nav input[type="range"] {
+    padding: 0.4rem 0.8rem;
+    border: none;
+    border-radius: 1rem;
+    font-weight: 600;
+    font-size: 0.95rem;
+    background: #fff;
+    color: #333;
+    transition: all 0.2s ease;
+}
+
+nav button:hover, nav select:hover {
+    background: var(--accent);
+    color: #fff;
+    cursor: pointer;
+}
+
+body.dark nav select, body.dark nav button, body.dark nav input[type="range"] {
+    background: #2c2c3f;
+    color: #fff;
+}
+
+main {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+}
+
+#currentAlgo {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-top: 0.5rem;
+    color: #fff;
+}
+
+#visualiser {
+    width: 100%;
+    max-width: 900px;
+    height: 400px;
+    display: flex;
+    align-items: flex-end;
+    gap: 2px;
+    padding: 5px;
+    background: #fff;
+    overflow: auto;
+}
+  
+.bar {
+    width: 10px;
+    background-color: var(--bar, #4e91fc);
+    transition: height 0.2s ease;
+}
+
+footer {
+    text-align: center;
+    padding: 1rem;
+    font-size: 0.9rem;
+}
