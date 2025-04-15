@@ -1,0 +1,16 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "type": "java",
+        "name": "Launch Library GUI",
+        "request": "launch",
+        "mainClass": "LibraryGUI",
+        "classPaths": [
+          "bin",
+          "lib/mysql-connector-java-8.0.26.jar"
+        ]
+      }
+    ]
+  }
+  
