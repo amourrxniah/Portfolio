@@ -1,0 +1,14 @@
+__pycache__/ 
+*.py[cod] 
+.env 
+venv/ 
+.streamlit/ 
+*.log 
+.vscode/ 
+*.egg-info/ 
+build/ 
+dist/ 
+*.tar.gz 
+*.whl 
+Thumbs.db 
+.DS_Store 
