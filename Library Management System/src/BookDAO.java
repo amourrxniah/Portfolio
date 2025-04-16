@@ -31,5 +31,25 @@ public class BookDAO {
         return books;
     }
 
-    // Additional methods for update and delete operations
+    //additional methods for update and delete operations
+    public void updateBook(Book book) throws SQLException {
+        String query = "UPDATE books SET title=?, author=?, quantity=? WHERE book_id=?";
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement stmt = connection.prepareStatement(query)) {
+            stmt.setString(1, book.getTitle());
+            stmt.setString(2, book.getAuthor());
+            stmt.setInt(3, book.getQuantity());
+            stmt.setInt(4, book.getBookId());
+            stmt.executeUpdate();
+        }   
+    }
+
+    public void deleteBook(int bookId) throws SQLException {
+        String query = "DELETE FROM books WHERE book_id=?";
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement stmt = connection.prepareStatement(query)) {
+            stmt.setInt(1, bookId);
+            stmt.executeUpdate();
+        }
+    }
 }
