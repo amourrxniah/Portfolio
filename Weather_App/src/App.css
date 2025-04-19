@@ -1,39 +1,194 @@
+/* reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* app */
 .app {
-  text-align: center;
+  min-height: 100vh;
   padding: 2rem;
+  background: linear-gradient(to bottom, #e0eafc, #cfdef3);
+  text-align: center;
+  color: #333;
+  transition: background 0.5s, color 0.5s;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+/* dark mode */
+.app-dark {
+  background: linear-gradient(to bottom, #0f2027, #203a43, #2c5364);
+  color: #f0f0f0;
+}
+
+/* main title */
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* search bar */
 .search-bar {
-  margin-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0;
 }
 
 .search-bar input {
-  padding: 0.5rem;
-  width: 200px;
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 8px 0 0 8px;
+  outline: none;
+  width: 250px;
 }
 
 .search-bar button {
-  padding: 0.5rem;
-  margin-left: 0.5rem;
+  padding: 0.75rem 1rem;
+  border: none;
+  background-color: #ccc;
+  border-radius: 0 8px 8px 0;
+  cursor: pointer;
+  transition: background 0.3s;
 }
 
-.cards-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+.search-bar button:hover {
+  background-color: #00f2fe;
+}
+
+/* card grid */
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+/* weather card */
+.weather-card {
+  background: rgba(255, 255, 2255, 0.85);
+  border-radius: 20px;
+  padding: 2rem;
+  text-align: left;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  margin: 2rem auto;
+  transition: transform 0.3s, background 0.3s;
+}
+
+.weather-card h1 {
+  font-size: 4rem;
+  margin: 0.5rem 0;
+}
+
+.weather-card img.weather-icon {
+  width: 100px;
+}
+
+.weather-card:hover {
+  transform: translateY(-8px);
+  background: #f7faff;
+}
+
+/* forecast */
+.forecast-grid {
+  display: flex;
+  justify-content: center;
   gap: 1rem;
   margin-top: 2rem;
 }
 
-.weather-card {
-  background: #f0f4f8;
-  border-radius: 8px;
+.forecast-card {
+  background: rgba(255, 255, 255, 0.7);
   padding: 1rem;
-  text-align: left;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  width: 120px;
 }
 
+.forecast-card img.forecast-icon {
+  width: 50px;
+}
+
+.forecast-card p {
+  margin: 0.5rem 0;
+}
+
+/* themes */
+.sunny {
+  background: linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%);
+}
+
+.rainy {
+  background: linear-gradient(to top, #bdc3c7 0%, #2c3e50 100%);
+}
+
+.snowy {
+  background: linear-gradient(to top, #83a4d4 0%, #b6fbff 100%);
+}
+
+.cloudy {
+  background: linear-gradient(to top, #757f9a 0%, #d7dde8 100%);
+}
+
+.default {
+  background: #eee;
+}
+
+.card-title {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  color: #4facfe;
+}
+
+/* spinner */
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid #ccc;
+  border-top-color: #4facfe;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(350deg);
+  }
+}
+
+/* error */
 .error {
-  color: #ff0000;
+  color: #ff4d4d;
   margin-top: 1rem;
+}
+
+/* theme toggle */
+.theme-toggle {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 0.5rem 1rem;
+  border: none;
+  background: #4facfe;
+  color: #fff;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.theme-toggle:hover {
+  background: #00f2fe;
+}
+
+.dark {
+  background-color: #1c1c1c;
+  color: #000;
 }

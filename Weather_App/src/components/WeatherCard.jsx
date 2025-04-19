@@ -1,10 +1,12 @@
 import React from "react";
 
-const WeatherCard = ({ title, data }) => {
+const WeatherCard = ({ city, temp, condition, iconUrl }) => {
     return (
         <div className="weather-card">
-            <h3>{title}</h3>
-            <pre>{JSON.stringify(data, null, 2)}</pre>
+            <h2>{city}</h2>
+            <img src={iconUrl} alt={condition} className="weather-icon" />
+            <h1>{temp}°C</h1>
+            <p>{condition}</p>
         </div>
     );
 };
