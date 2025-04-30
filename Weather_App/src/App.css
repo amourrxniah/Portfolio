@@ -3,13 +3,15 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  
 }
 
 /* ========== global background ========== */
 body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background: linear-gradient(to bottom, #cfdef3, #e0eafc);
   min-height: 100vh;
+  overflow: hidden;
 }
 
 /* ========== app container ========== */
@@ -133,6 +135,7 @@ main {
   flex-direction: column;
   gap: 2rem;
   margin: 2vh auto;
+  overflow: hidden;
 }
 
 .dashboard-dark {
@@ -194,6 +197,8 @@ main {
 
 /* ========== Search History Buttons ========== */
 .history-buttons {
+  position: relative;
+  bottom: 1.5rem;
   display: flex;
   gap: 0.5rem;
   flex-wrap: wrap;
@@ -225,17 +230,12 @@ main {
   gap: 1.5vw;
 }
 
-/* left */
-.left-content {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-/* right */
-.right-content {
+/* left and right section */
+.left-content, .right-content {
+  bottom: 2.5rem;
   flex: 1;
   width: 35vw;
+  height: 100%;
   min-height: 25vh;
   display: flex;
   flex-direction: column;
@@ -249,13 +249,15 @@ main {
 
 /* chart navigation */
 .chart-area {
+  left: 1vw;
   width: 35vw;
-  min-height: 25vh;
-  padding: 1rem;
+  height: 35vh;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
+  min-height: 100%;
+  max-width: 100%;
 }
 
 .chart-nav-left, .chart-nav-right {
@@ -266,7 +268,7 @@ main {
 }
 
 .chart-nav-left {
-  left: 0.5rem;
+  left: 1rem;
 }
 
 .chart-nav-right {
@@ -291,16 +293,6 @@ main {
 }
 
 /* ========== Weather Card ========== */
-.weather-card {
-  background: rgba(255, 255, 255, 0.8);
-  border-radius: 2rem;
-  padding: 1rem;
-  text-align: center;
-  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, background 0.3s ease;
-  width: 35vw;
-  min-height: 25vh;
-}
 
 .weather-card.dark {
   background: rgba(0, 0, 0, 0.8);
@@ -316,31 +308,27 @@ main {
   height: auto;
 }
 
-.weather-card:hover {
-  transform: translateY(-1vh);
-  background: #f7faff;
-}
-
 /* ========== Forecast Cards Row ========== */
 .forecast-cards {
+  position: relative;
+  bottom: 3.4rem;
   display: flex;
-  flex-direction: row;
   justify-content: center;
-  flex-wrap: nowrap;
-  gap: 1.5rem;
-  overflow-x: auto;
-  padding: 1rem 0;
+  align-items: center;
+  gap: 2rem;
 }
 
 .forecast-card {
+  flex: 1 1 18vw;
+  min-width: 18vw;
+  max-width: 20vw;
+  min-height: 18vh;
+  border-radius: 2rem;
   background: rgba(255, 255, 255, 0.9);
   padding: 0.8rem;
   border-radius: 2rem;
-  min-width: 16vw;
-  min-height: 18vh;
   text-align: center;
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.05);
-  flex-shrink: 0;
 }
 
 .forecast-card.dark {

@@ -24,7 +24,7 @@ const WeatherDashboard = ({ darkMode }) => {
     setError('');
     try {
       const weatherData = await getCurrentWeather(city);
-      const forecastData = await getForecast(city, 5);
+      const forecastData = await getForecast(city, 3);
       const astronomyData = await getAstronomy(city);
       const timezoneData = await getTimezone(city);
 
@@ -209,10 +209,10 @@ const WeatherDashboard = ({ darkMode }) => {
           <Spinner />
         ) : (
           <>
-            <div className="left-content">
+            <div className={`left-content ${darkMode ? 'dark' : ''}`}>
               {weather && (
                 <div style={{ maxWidth: '250px' }}>
-                  <WeatherCard
+                  <WeatherCard weather={weather} astronomy={astronomy} timezone={timezone} darkMode={darkMode} 
                     city={weather.location.name}
                     temp={weather.current.temp_c}
                     condition={weather.current.condition.text}
@@ -221,7 +221,18 @@ const WeatherDashboard = ({ darkMode }) => {
                 </div>
               )}
 
-              <div className="forecast-cards" style={{ display: 'flex', gap: '1rem', flexWrap: 'nowrap', overflowX: 'auto' }}>
+            </div>
+
+            <div className={`right-content ${darkMode ? 'dark' : ''}`}>
+              <div className='chart-nav-left'><button onClick={() => changeChart('prev')}>&lt;</button></div>
+              <div className='chart-area'>{renderChart()}</div>
+              <div className='chart-nav-right'><button onClick={() => changeChart('next')}>&gt;</button></div>
+            </div>
+          </>
+        )}
+      </div>
+
+      <div className={`forecast-cards ${darkMode ? 'dark' : ''}`}>
                 {forecast.map((day, index) => (
                   <ForecastCard
                     key={index}
@@ -234,16 +245,7 @@ const WeatherDashboard = ({ darkMode }) => {
                   />
                 ))}
               </div>
-            </div>
 
-            <div className='right-content'>
-              <div className='chart-nav-left'><button onClick={() => changeChart('prev')}>&lt;</button></div>
-              <div className='chart-area'>{renderChart()}</div>
-              <div className='chart-nav-right'><button onClick={() => changeChart('next')}>&gt;</button></div>
-            </div>
-          </>
-        )}
-      </div>
     </div>
   );
 };
