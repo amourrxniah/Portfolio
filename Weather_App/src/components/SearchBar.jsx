@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const SearchBar = ({ onSearch }) => {
+const SearchBar = ({ darkMode, onSearch }) => {
   const [input, setInput] = useState('');
 
   const handleSubmit = (e) => {
@@ -12,7 +12,7 @@ const SearchBar = ({ onSearch }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className='search-bar'>
+    <form onSubmit={handleSubmit} className={`search-bar ${darkMode ? 'search-dark' : ''}`}>
         <input 
           type='text' 
           value={input} 

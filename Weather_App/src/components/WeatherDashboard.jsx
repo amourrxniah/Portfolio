@@ -87,7 +87,7 @@ const WeatherDashboard = ({ darkMode }) => {
         data: forecast.map(day => day.day.avgtemp_c),
         fill: false,
         borderColor: '#3498db',
-        tension: 0.1
+        tension: 0.1,
       }
     ]
   };
@@ -151,22 +151,101 @@ const WeatherDashboard = ({ darkMode }) => {
     ]
   };
 
+  const getChartOptions = () => ({
+    responsive: true,
+    plugins: {
+      legend: {
+        labels: {
+          color: darkMode ? '#fff' : '#000'
+        }
+      },
+      title: {
+        color: darkMode ? '#fff' : '#000'
+      }
+    },
+    scales: {
+      x: {
+        ticks: {
+          color: darkMode ? '#fff' : '#000'
+        },
+        grid: {
+          color: darkMode ? 'rgba(255,255,255,0.2)' : 'rgba(0,0,0,0.1)'
+        }
+      },
+      y: {
+        ticks: {
+          color: darkMode ? '#fff' : '#000'
+        },
+        grid: {
+          color: darkMode ? 'rgba(255,255,255,0.2)' : 'rgba(0,0,0,0.1)'
+        }
+      }
+    }
+  });
+  
+
   const renderChart = () => {
+    const options = getChartOptions();
+  
     switch (chartTypes[currentChartIndex]) {
       case 'line':
-        return <Line data={temperatureData} options={{ responsive: true, scales: { y: { beginAtZero: false } } }} />;
+        return <Line data={temperatureData} options={options} />;
       case 'bar':
-        return <Bar data={humidityData} options={{ responsive: true, scales: { y: { beginAtZero: false } } }} />;
+        return <Bar data={humidityData} options={options} />;
       case 'pie':
-        return <Pie data={pieData} options={{ responsive: true }} />;
-      case 'radar':
-        return <Radar data={radarData} options={{ responsive: true }} />;
+        return <Pie data={pieData} options={{
+          responsive: true,
+          plugins: {
+            legend: {
+              labels: {
+                color: darkMode ? '#fff' : '#000'
+              }
+            }
+          }
+        }} />;
+        case 'radar':
+          return (
+            <Radar
+              data={radarData}
+              options={{
+                responsive: true,
+                maintainAspectRatio: false, 
+                aspectRatio: 6,
+                plugins: {
+                  legend: {
+                    labels: {
+                      color: darkMode ? '#fff' : '#000'
+                    }
+                  }
+                },
+                scales: {
+                  r: {
+                    pointLabels: {
+                      color: darkMode ? '#fff' : '#000'
+                    },
+                    angleLines: {
+                      color: darkMode ? '#fff' : 'rgba(0,0,0,0.1)'  
+                    },
+                    grid: {
+                      color: darkMode ? 'rgba(255,255,255,0.2)' : 'rgba(0,0,0,0.1)' 
+                    },
+                    ticks: {
+                      color: darkMode ? '#fff' : '#000',
+                      backdropColor: 'transparent'
+                    }
+                  }
+                }
+              }}
+            />
+          );
+        
       case 'windSpeed':
-        return <Line data={windSpeedData} options={{ responsive: true, scales: { y: { beginAtZero: false } } }} />;
+        return <Line data={windSpeedData} options={options} />;
       default:
-        return <Line data={temperatureData} options={{ responsive: true, scales: { y: { beginAtZero: false } } }} />;
+        return <Line data={temperatureData} options={options} />;
     }
   };
+  
 
   const changeChart = (direction) => {
     if (direction === 'next') {
@@ -181,7 +260,7 @@ const WeatherDashboard = ({ darkMode }) => {
 
       {/* top search bar */}
       <div className='top-section'>
-        <SearchBar onSearch={handleSearch} history={history} />
+        <SearchBar darkMode={darkMode} onSearch={handleSearch} history={history} />
         {weather && (
           <button className='reload-button' onClick={reloadWeather}>
             🔄</button>

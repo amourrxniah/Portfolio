@@ -30,6 +30,10 @@ body {
 /* dark mode */
 .app-dark {
   background: linear-gradient(to bottom, #0f2027, #203a43, #2c5364);
+}
+
+.app-dark .landing-title,
+.app-dark .landing-subtitle {
   color: #f0f0f0;
 }
 
@@ -141,7 +145,12 @@ main {
 .dashboard-dark {
   background: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(1.2rem);
-  color: #000;
+}
+
+.dashboard-dark .left-content,
+.dashboard-dark .right-content {
+  background: rgba(20, 40, 60, 0.9);
+  color: #ffffff;
 }
 
 /* ========== Top Section ========== */
@@ -173,12 +182,26 @@ main {
   border: none;
   background-color: #3498db;
   border-radius: 0 0.8rem 0.8rem 0;
+  border: 0.1rem solid #ccc;
   cursor: pointer;
   transition: background 0.1s ease;
 }
 
 .search-bar button:hover {
-  background-color: #00f2fe;
+  background-color: #0066cc;
+}
+
+.search-dark input {
+  background: rgba(20, 40, 60, 0.9);
+  color: #ffffff;
+}
+
+.search-dark button {
+  background: rgba(20, 40, 60, 0.9);
+}
+
+.search-dark input::placeholder {
+  color: #bbb;
 }
 
 /* ========== Reload Button ========== */
@@ -218,6 +241,11 @@ main {
 
 .history-btn:hover {
   background: #7f8c8d;
+}
+
+.dashboard-dark .history-btn {
+  background: rgba(20, 40, 60, 0.9);
+  color: #ffffff;
 }
 
 /* ========== Main Weather Content ========== */
@@ -294,11 +322,6 @@ main {
 
 /* ========== Weather Card ========== */
 
-.weather-card.dark {
-  background: rgba(0, 0, 0, 0.8);
-  color: #e0e0e0;
-}
-
 .weather-card h1 {
   font-size: 2.5rem;
 }
@@ -331,9 +354,9 @@ main {
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.05);
 }
 
-.forecast-card.dark {
-  background: rgba(0, 0, 0, 0.8);
-  color: #e0e0e0;
+.forecast-dark {
+  background: rgba(20, 40, 60, 0.9);
+  color: #ffffff;
 }
 
 .forecast-card img.forecast-icon {
@@ -424,22 +447,21 @@ main {
   border: none;
   background: #3498db;
   color: #fff;
+  border: 0.1rem solid #ccc;
   border-radius: 8px;
   cursor: pointer;
   font-weight: 600;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  transition: background 0.3s ease;
+  transition: all 0.3s ease;
   z-index: 1000;
 }
 
 .theme-toggle:hover {
-  background: #00f2fe;
+  transform: scale(1.1);
 }
 
-/* dark elements */
-.dark {
-  background-color: #1c1c1c;
-  color: #e0e0e0;
+.app-dark .theme-toggle {
+  background: #203a43;
 }
 
 /* search history */
