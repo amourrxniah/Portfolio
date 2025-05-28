@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Snake Game</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <!-- leaderboard toggle -->
+        <div class="leaderboard-container">
+            <button id="toggleLeaderboard">🏆 Leaderboard</button>
+            <div class="leaderboard-slider">
+                <h3>Top Players</h3>
+                <ol id="leaderboardList"></ol>
+            </div>
+        </div>
+
+        <h1>🐍 Slither Snake Game</h1>
+
+        <div class="controls">
+            <input type="text" id="username" placeholder="Enter your name" maxlength="15">
+            <button onclick="startGame()" class="start-btn">Start Game</button>
+            <div class="settings">
+                <label for="controlSelect">Controls:</label>
+                <select id="controlSelect">
+                    <option value="arrow">Arrow Keys</option>
+                    <option value="wasd">WASD</option>
+                    <option value="cursor">Mouse</option>
+                </select>
+            </div>
+            <div id="circularTimer">
+                <svg>
+                    <circle cx="30" cy="30" r="28"></circle>
+                    <circle id="progress" cx="30" cy="30" r="28"></circle>
+                </svg>
+                <span id="timeValue">30</span>
+            </div>
+        </div>
+
+        <!-- game mode selector -->
+        <div class="mode-selector">
+            <label for="modeSelect">Mode:</label>
+            <select id="modeSelect">
+                <option value="easy">Easy</option>
+                <option value="medium" selected>Medium</option>
+                <option value="hard">Hard</option>
+            </select>
+        </div>
+
+        <div id="levelDisplay">Level 1</div>
+        <div class="game-container">
+            <canvas id="gameCanvas"></canvas>
+            <div class="score">Score: <span id="score">0</span></div>
+        </div>
+
+        <!-- pre game instruction -->
+        <!-- <div id="preGame" class="pre-game">
+            <h2>Welcome to Slither Snake Game 🐍</h2>
+            <p>Choose your controls and mode, enter your name, and select <strong>Start Game</strong> to begin!</strong></p>
+            <p>Collect food to gain points!</p>
+        </div> -->
+
+        <div id="gameOverPopup" class="popup hidden">
+            <h2>Game Over</h2>
+            <p>Your Score: <span id="finalScore">0</span></p>
+            <button onclick="startGame()">Play Again</button>
+        </div>
+
+        <!-- firebase SDK -->
+        <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+       
+        <script src="script.js"></script>
+    </body>
+</html>
