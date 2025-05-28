@@ -14,7 +14,7 @@ st.markdown("Explore mental health trends in the tech industry based on survey d
 # --- load data ---
 @st.cache_data
 def load_data():
-    df = pd.read_csv("survey.csv")
+    df = pd.read_csv("Data Analysis Dashboard/survey.csv")
     df = df.drop_duplicates() #clean repeated values
     return df
 
