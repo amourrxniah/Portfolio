@@ -1,0 +1,12 @@
+Title: Hello world
+Language: python
+Content:
+print("Hello World!")
+
+Title: Html website
+Language: HTML
+Content:
+<!Doctype HTML>
+  <head meta-charset=UTF8>
+</html>
+
