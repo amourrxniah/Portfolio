@@ -1,0 +1,17 @@
+{
+  "Hello world": {
+    "title": "Hello world",
+    "language": "python",
+    "content": "print(\"Hello World!\")"
+  },
+  "Html website": {
+    "title": "Html website",
+    "language": "HTML",
+    "content": "<!Doctype HTML>\n  <head meta-charset=UTF8>\n</html>"
+  },
+  "UNI": {
+    "title": "UNI",
+    "language": "css",
+    "content": "* {\n   background: \"#f5f5f5\";\n   color: \"#000\";\n}"
+  }
+}
