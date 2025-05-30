@@ -378,8 +378,8 @@ with tab5:
 
 #raw data view
 st.subheader("Raw Data")
-if st.checkbox("Show raw data"):
-    st.write(filtered_df)
+with st.expander("View Raw Data", expanded=True):
+    st.dataframe(filtered_df)
 
 #footer
 st.markdown("---")
