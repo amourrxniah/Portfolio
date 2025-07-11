@@ -1,6 +1,7 @@
+import os
 import discord
 from discord.ext import commands
-import os
+from discord.ext.commands import Context
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -15,8 +16,8 @@ bot = commands.Bot(command_prefix="!", intents=intents)
 async def on_ready():
     print(f"{bot.user.name} is online!")
 
-@bot.command()
-async def ping(ctx):
+@bot.command(name="ping")
+async def ping_command(ctx: Context):
     await ctx.send("Pong!")
 
 bot.run(TOKEN)
