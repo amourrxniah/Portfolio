@@ -1,0 +1,392 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study App</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/tetris.css">
+</head>
+<body>
+    <!-- sidebar nav -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <div class="profile">
+                <div class="profile-img">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="profile-info">
+                    <h3>Study Buddy</h3>
+                    <p>Active Learner</p>
+                </div>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+            <ul>
+                <li class="nav-item active" data-section="dashboard">
+                    <i class="fas fa-home"></i>
+                    <span>Dashboard</span>
+                </li>
+                <li class="nav-item" data-section="flashcards">
+                    <i class="fas fa-sticky-note"></i>
+                    <span>Flashcards</span>
+                </li>
+                <li class="nav-item" data-section="study">
+                    <i class="fas fa-book"></i>
+                    <span>Study</span>
+                </li>
+                <li class="nav-item" data-section="tetris">
+                    <i class="fas fa-gamepad"></i>
+                    <span>Tetris</span>
+                </li>
+                <li class="nav-item" data-section="stats">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Statistics</span>
+                </li>  
+            </ul>
+        </nav>
+
+        <div class="streak-counter">
+            <div class="streak-header">
+                <i class="fas fa-fire"></i>
+                <h4>Study Streak</h4>
+            </div>
+            <div class="streak-days">7 days</div>
+            <p>Keep going!</p>
+        </div>
+    </div>
+
+    <!-- main content -->
+    <div class="main-content">
+        <header>
+            <button class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <button class="back-button" id="back-button" style="display: none;">
+                <i class="fas fa-arrow-left"></i> Back
+            </button>
+            <h1>Study App</h1>
+            <div class="header-actions">
+                <div class="notifications">
+                    <i class="fas fa-bell"></i>
+                </div>
+            </div>
+        </header>
+
+        <!-- dashboard section -->
+        <section id="dashboard" class="content-section active">
+            <div class="welcome-banner">
+                <h2>Welcome Back!</h2>
+                <p>You have <strong>5</strong> flashcards to review today</p>
+                <button class="pink-btn" id="start-studying-btn">Start Studying</button>
+            </div>
+
+            <div class="stats-cards">
+                <div class="stat-card"><div class="stat-icon"><i class="fas fa-sticky-note"></i></div><div class="stat-info"><h3 id="totalCards">25</h3><p>Total Flashcards</p></div></div>
+                <div class="stat-card"><div class="stat-icon"><i class="fas fa-check-circle"></i></div><div class="stat-info"><h3 id="mastered">18</h3><p>Mastered</p></div></div>
+                <div class="stat-card"><div class="stat-icon"><i class="fas fa-clock"></i></div><div class="stat-info"><h3 id="studyTime">4h 22m</h3><p>Study Time</p></div></div>
+            </div>
+
+            <div class="dashboard-grid">
+                <div class="recent-activity"><h2>Recent Activity</h2>
+                <div class="activity-list">
+                    <div class="activity-item"><div class="activity-icon"><i class="fas fa-plus"></i></div><div class="activity-details"><p>Created new flashcard in <strong>Math</strong></p><span>2 hours ago</span></div></div>
+                    <div class="activity-item"><div class="activity-icon"><i class="fas fa-check"></i></div><div class="activity-details"><p>Studied <strong>Science</strong> flashcards</p><span>5 hours ago</span></div></div>
+                    <div class="activity-item"><div class="activity-icon"><i class="fas fa-trophy"></i></div><div class="activity-details"><p>Achieved <strong>7 day streak</strong></p><span>Yesterday</span></div></div>
+                </div>
+            </div>
+
+            <div class="quick-actions">
+                <h2>Quick Actions</h2>
+                <div class="action-buttons">
+                    <button class="action-btn" id="quick-create-flashcard"><i class="fas fa-plus-circle"></i>Create Flashcard</button>
+                    <button class="action-btn" id="quick-study"><i class="fas fa-play-circle"></i>Quick Review</button>
+                    <button class="action-btn" id="quick-stats"><i class="fas fa-chart-line"></i>View Stats</button>
+                    <button class="action-btn" id="quick-tetris"><i class="fas fa-gamepad"></i>Play Tetris</button>
+                </div>
+            </div>
+        </div>        
+    </section>
+
+        <!-- flashcards section -->
+        <section id="flashcards" class="content-section">
+            <div class="section-header">
+                <h2>Flashcards</h2>
+                <button class="blue-btn" id="create-flashcard-btn"><i class="fas fa-plus"></i>Create New</button>
+            </div>
+
+            <div id="flashcards-container">
+                <h3>Your flashcards</h3>
+                <div id="flashcard-list">
+                    <!-- flashcards will be here -->
+                </div>
+                <button class="view-all-btn" id="view-all-cards-btn">
+                    <i class="fas fa-eye"></i> View All Flashcards
+                </button>
+            </div>
+        </section>
+
+        <!-- study section -->
+        <section id="study" class="content-section">
+            <h2>Study Your Flashcards</h2>
+            <div class="study-options">
+                <div class="study-option-card">
+                    <i class="fas fa-play-circle"></i>
+                    <h3>Quick Review</h3>
+                    <p>Review all your flashcards quickly</p>
+                    <button class="blue-btn study-option-btn" data-mode="quick-review">Start</button>
+                </div>
+
+                <div class="study-option-card">
+                    <i class="fas fa-brain"></i>
+                    <h3>Spaced Repetition</h3>
+                    <p>Focus on cards you struggle with</p>
+                    <button class="blue-btn study-option-btn" data-mode="spaced-repetition">Start</button>
+                </div>
+
+                <div class="study-option-card">
+                    <i class="fas fa-gamepad"></i>
+                    <h3>Test Mode</h3>
+                    <p>Test your knowledge</p>
+                    <button class="blue-btn study-option-btn" data-mode="test-mode">Start</button>
+                </div>
+            </div>
+
+            <div class="category-selector">
+                <h3>Study by Category</h3>
+                <div class="category-buttons">
+                    <button class="category-btn">All</button>
+                    <button class="category-btn">Math</button>
+                    <button class="category-btn">Science</button>
+                    <button class="category-btn">History</button>
+                    <button class="category-btn">Language</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- tetris section -->
+        <section id="tetris" class="content-section">
+            <div class="game-header">
+                <h2>Tetris</h2>
+                <div class="game-controls">
+                    <button id="start-game" class="pink-btn">
+                        <i class="fas fa-play"></i> Start Game
+                    </button>
+                    <button id="pause-game" class="blue-btn">
+                        <i class="fas fa-pause"></i> Pause Game
+                    </button>
+                </div>
+            </div>
+                
+            <div class="tetris-thumbnail" id="open-tetris">
+                <i class="fas fa-gamepad"></i>
+                <h3>Play Tetris</h3>
+                <p>Click to open the game</p>
+            </div>
+
+            <div class="game-container" id="tetris-game" style="display: none;">
+                <div class="tetris-board">
+                    <canvas id="tetris-canvas" width="300" height="600"></canvas>
+                </div>
+                <div class="game-sidebar">
+                    <div class="tetris-stats">
+                        <div class="tetris-stat">
+                            <i class="fas fa-star"></i>
+                            <span>Score: <span id="score">0</span>
+                        </div>
+                        <div class="tetris-stat">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Level: <span id="level">1</span>
+                        </div>
+                        <div class="tetris-stat">
+                            <i class="fas fa-layer-group"></i>
+                            <span>Lines: <span id="lines">0</span>
+                        </div>
+                    </div>
+                
+                    <div class="next-piece">
+                        <h3>Next Piece</h3>
+                        <canvas id="next-piece-canvas" width="100" height="100"></canvas>
+                    </div>
+
+                    <div class="game-instructions">
+                        <h3>Controls</h3>
+                        <ul>
+                            <li>← → : Move left/right</li>
+                            <li>↑ : Rotate</li>
+                            <li>↓ : Soft drop</li>
+                            <li>Space : Hard drop</li>
+                            <li>P : Pause</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- stats section -->
+        <section id="stats" class="content-section">
+            <h2>Your Study Statistics</h2>
+
+            <div class="stats-grid">
+                <div class="stat-chart">
+                    <h3>Study Time by Day</h3>
+                    <canvas id="study-time-chart" height="250"></canvas>
+                </div>
+                <div class="stat-chart">
+                    <h3>Flashcards by Category</h3>
+                    <canvas id="category-chart" height="250"></canvas>
+                </div>
+                <div class="stat-chart">
+                    <h3>Mastery Progress</h3>
+                    <canvas id="mastery-chart" height="250"></canvas>
+                </div>
+
+                <div class="stat-chart">
+                    <h3>Weekly Goals</h3>
+                    <div class="goals-list">
+                        <div class="goal-item">
+                            <div class="goal-info">
+                                <h4>Study Time</h4>
+                                <p>5/7 hours this week</p>
+                            </div>
+                            <div class="goal-progress">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 71%"></div>
+                                </div>
+                                <span>71%</span>
+                            </div>
+                        </div>
+
+                        <div class="goal-item">
+                            <div class="goal-info">
+                                <h4>Flashcards Created</h4>
+                                <p>8/10 flashcards</p>
+                            </div>
+                            <div class="goal-progress">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 80%;"></div>
+                                </div>
+                                <span>80%</span>
+                            </div>
+                        </div>
+
+                        <div class="goal-item">
+                            <div class="goal-info">
+                                <h4>Study Days</h4>
+                                <p>5/7 days this week</p>
+                            </div>
+                            <div class="goal-progress">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 71%;"></div>
+                                </div>
+                                <span>71%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- flashcard creator popup -->
+    <div class="flashcard-creator-popup" id="flashcard-creator">
+        <div class="creator-content">
+            <div class="creator-header">
+                <h2>Create Flashcard</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="input-group">
+                    <label for="flashcard-title">Title</label>
+                    <input type="text" id="flashcard-title" placeholder="Enter flashcard title">
+                </div>
+
+                <div class="input-group">
+                    <label for="flashcard-content">Content</label>
+                    <textarea id="flashcard-content" placeholder="Enter the content for your flashcard"></textarea>
+                </div>
+
+                <div class="input-group">
+                    <label for="flashcard-category">Category</label>
+                    <select id="flashcard-category">
+                        <option value="" disabled selected>Select category</option>
+                        <option value="General">General</option>
+                        <option value="Math">Math</option>
+                        <option value="Science">Science</option>
+                        <option value="History">History</option>
+                        <option value="Language">Language</option>
+                    </select>
+                </div>
+
+                <div class="creator-navigation">
+                    <button id="prev-card-creator" class="blue-btn" disabled>
+                        <i class="fas fa-chevron-left"></i>Previous
+                    </button>
+                    <button id="create-flashcard" class="pink-btn">
+                        <i class="fas fa-plus-circle"></i> Create Flashcard
+                    </button>
+                    <button id="next-card-creator" class="blue-btn">
+                        Next <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- flashcard viewer modal -->
+    <div class="modal" id="flashcard-viewer">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Flashcard Viewer</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="flashcard-viewer-container">
+                    <div class="viewer-controls">
+                        <button id="prev-card"><i class="fas fa-chevron-left"></i></button>
+                        <span id="card-counter">1/1</span>
+                        <button id="next-card"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+
+                    <div class="viewer-card">
+                        <div class="card-front">
+                            <h3 id="viewer-title">Flashcard Title</h3>
+                        </div>
+                        <div class="card-back">
+                            <p id="viewer-content">Flashcard content will appear here</p>
+                            <div class="card-category">
+                                Category: <span id="viewer-category">General</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button id="flip-card" class="pink-btn">
+                        <i class="fas fa-sync-alt"></i> Flip Card
+                    </button>
+
+                    <div class="viewer-actions">
+                        <button class="action-btn know-btn">
+                            <i class="fas fa-check"></i> I Know This!
+                        </button>
+                        <button class="action-btn study-again-btn">
+                            <i class="fas fa-redo"></i> Study Again
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- footer -->
+    <footer>
+        <p>Study App with Tetris Game | Made by Niah</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/flashcards.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/tetris.js"></script>
+</body>
+</html>
