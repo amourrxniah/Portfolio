@@ -1,7 +1,10 @@
 const BASE_URL = 'https://api.weatherapi.com/v1';
-const API_KEY = 'd04ecc3cc8b94c53aec204229240612';
+const API_KEY = import.meta.env.WEATHER_API_KEY;
 
 const fetchFromAPI = async (endpoint) => {
+    if (!API_KEY) {
+        throw new Error('API key is missing');
+    }
     const response = await fetch(`${BASE_URL}${endpoint}&key=${API_KEY}`);
     if (!response.ok) {
         throw new Error('API request failed');
