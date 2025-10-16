@@ -5,7 +5,7 @@ on:
         branches: [ main ]
 
 permissions:
-    contents: read
+    contents: write
     pages: write
     id-token: write
 
@@ -38,7 +38,7 @@ jobs:
         - name: Setup Pages
           uses: actions/configure-pages@v4
 
-        - name: upload-artifact
+        - name: Upload artifact
           uses: actions/upload-pages-artifact@v3
           with:
             path: ./Weather_App/dist
